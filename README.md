@@ -5,6 +5,7 @@
 Um escritório de advocacia tem três tipos de funcionários: secretária, que também faz a organização dos arquivos e precisa ter conhecimentos de biblioteconomia, contadores, para realizar perícias contábeis em processos de auditoria, e uma equipe de advogados, que atuam nas áreas civil, trabalhista e administrativa/tributária e são chefiados por um advogado (que é o dono do escritório);
 
 Os funcionários possuem um nome, uma matrícula e um telefone profissional. Além disso, a secretária possui registro no Conselho Federal de Biblioteconomia, enquanto o contador obrigatoriamente é registrado junto ao Conselho de Contabilidade e os advogados possuem OAB própria;
+
 O público alvo desse escritório são pessoas jurídicas (empresas e municípios), mas ele também pode atender a pessoas físicas e defender o próprio escritório, caso haja necessidade;
 
 Os clientes são registrados com nome, CPF ou CNPJ, logradouro completo e telefone (s);
