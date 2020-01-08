@@ -10,7 +10,7 @@ O público alvo desse escritório são pessoas jurídicas (empresas e município
 
 Os clientes são registrados com nome, CPF ou CNPJ, logradouro completo e telefone (s);
 
-Inicialmente, é agendada, com data e hora previamente estabelecida, uma consultoria entre o cliente e um ou mais advogados. Caso haja necessidade, o contador poderá participar;
+Inicialmente, é agendada, com data e hora previamente estabelecida, uma consultoria entre o cliente e um advogado. Caso haja necessidade, o contador poderá auxiliar na elaboração do processo judicial ou parecer;
 
 Durante a consultoria, através de uma pauta específica para cada consulta, será verificada a complexidade do caso e, a partir disso, um contrato é assinado e o valor é estabelecido;
 
