@@ -22,4 +22,4 @@ Por sua vez, o réu também possui um advogado constituído (defensor), com nome
 
 O processo ainda está vinculado a uma vara, que conterá endereço e número especificador (1-9);
 
-Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito, que possui nome e matrícula;
+Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito, que possui nome e matrícula.
