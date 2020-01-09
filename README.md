@@ -190,3 +190,67 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  fone |  Chave primária | Identificador do cliente  | PK_fone | PRIMARY KEY (fone)  |
 |  idcliente |  Chave estrangeira referenciando coluna idcliente da tabela cliente | Identificador do cliente  | PK_fone | FOREIGN KEY (idcliente) REFERENCES cliente  |
+
+**Tabela Gera**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idconsulta |  INT | NÃO  |   | X  | |
+| idfuncionario  | INT  | NÃO  |   | X  | |
+| idcliente | INT  | NÃO  |   |  X |  |
+| data | DATE  | NÃO  |   |  X |  |
+| idcontrato | int  | NÃO  |   |  X |  | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idconsulta |  Chave estrangeira referenciando coluna idconsulta da tabela consulta | Identificador da consulta  | FK_idconsulta | FOREIGN KEY (idconsulta) REFERENCES consulta  |
+| idfuncionario  | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario  | Nome do funcionário que realizou a consulta  |  FK_idfuncionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario |
+| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
+| data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
+| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_idcontrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
+
+**Tabela Contrato**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idcontrato | INT  | NÃO  |  X |   |  |
+| numero_contrato | INT  | NÃO  |   |   | X |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idcontrato |  Chave primária | Identificador do contrato  | PK_idcontrato | PRIMARY KEY (fidcontrato)  |
+
+**Tabela Processo**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idprocesso |  INT | NÃO  |  X |   | |
+|  idconsulta |  INT | NÃO  |   | X  | |
+| idcontrato | int  | NÃO  |   |  X |  |
+| data | DATE  | NÃO  |   |  X |  |
+| idvara | int  | NÃO  |   |  X |  |
+| numProcesso | int  | NÃO  |   |   | X |
+| idedefensor | int  | NÃO  |   |  X |  |
+| idreu | int  | NÃO  |   |  X |  | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idprocesso |  Chave primária | Identificador do processo  | PK_idconsulta | PRIMARY KEY (idprocesso) |
+|  idconsulta |  Chave estrangeira referenciando coluna idconsulta da tabela consulta | Identificador da consulta  | FK_idconsulta | FOREIGN KEY (idconsulta) REFERENCES consulta  |
+| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_idcontrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
+| data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
+| idvara  | Chave estrangeira referenciando coluna idvara da tabela vara  | Identifica a vara ao qual o processo está vinculado  |  FK_idvara | FOREIGN KEY (idvara) REFERENCES vara |
+| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
+| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
+
+
+
