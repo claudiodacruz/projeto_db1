@@ -16,7 +16,7 @@ Durante a consultoria, através de uma pauta específica para cada consulta, ser
 
 Após a consultoria, poderá ou não surgir um processo. Se surgir, esse processo será de responsabilidade de um ou mais advogados e conterá obrigatoriamente o nome de pelo menos um advogado, o nome do cliente ao qual está vinculado, um assunto (que pode se repetir), um número identificador único e também estará vinculado a um réu;
 
-O réu pode ser pessoa física ou jurídica e é registrado com nome, CPF ou CNPJ, logradouro completo e telefone (s);
+O réu pode ser pessoa física ou jurídica e é registrado com nome, logradouro completo, telefone e email;
 
 Por sua vez, o réu também possui um advogado constituído (defensor), com nome e OAB, ou é defendido pela defensoria pública;
 
