@@ -1,5 +1,3 @@
-# projeto_db1
-
 # Minimundo de um escritório de advocacia
 
 Um escritório de advocacia tem três tipos de funcionários: secretária, que também faz a organização dos arquivos e precisa ter conhecimentos de arquivologia, contadores, para realizar perícias contábeis em processos de auditoria, e uma equipe de advogados, que atuam nas áreas civil, trabalhista e administrativa/tributária e são chefiados por um advogado;
@@ -23,3 +21,77 @@ Por sua vez, o réu também possui um advogado constituído (defensor), com nome
 O processo ainda está vinculado a uma vara, que conterá endereço e número especificador (1-9);
 
 Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito, que possui nome e matrícula.
+
+# Modelo conceitual
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_conceitual.png)
+
+# Modelo lógico
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo.png)
+
+# Modelo lógico expandido
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo_expandido.png)
+
+# Dicionário de dados
+
+**Tabela Funcionário**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  id_func |  INT | NÃO  | X  |   | |
+| nome  | VARCHAR(45)  | NÃO  |   |   | X|
+| telefone  |INT  | NÃO  |   |   | |
+| email  | VARCHAR(45)  | NÃO  |   |   | | |
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ |
+|  id_func |  Chave primária | Identificador do funcionário  | PRIMARY KEY (id_func)  |
+| nome  | Chave alternativa  | Nome do funcionário  |  UNIQUE (nome) |  |
+
+**Tabela Secretária**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  id_func |  INT | NÃO  |   | x  | |
+| cfa  | INT  | NÃO  |   |   | | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ |
+|  id_func |  Chave primária | Chave estrangeira referenciando coluna id_func da tabela funcionario | FOREIGN KEY (id_func) REFERENCES funcionario  |
+|  id_func |  Chave primária | Chave primária referenciando coluna id_func da tabela funcionario | PRIMARY KEY (idfuncionario)  |
+
+**Tabela Contador**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  id_func |  INT | NÃO  |   | x  | |
+| crc  | INT  | NÃO  |   |   | | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ |
+|  id_func |  Chave primária | Chave estrangeira referenciando coluna id_func da tabela funcionario | FOREIGN KEY (id_func) REFERENCES funcionario  |
+|  id_func |  Chave primária | Chave primária referenciando coluna id_func da tabela funcionario | PRIMARY KEY (idfuncionario)  |
+
+**Tabela Advogado**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+|  id_func |  INT | NÃO  |   | x  | |
+| oab  | INT  | NÃO  |   |   | |
+| id_coordena  | INT  | NÃO  |   |  x | | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO |
+| ------------ | ------------ | ------------ | ------------ |
+|  id_func |  Chave primária | Chave estrangeira referenciando coluna id_func da tabela funcionario | FOREIGN KEY (id_func) REFERENCES funcionario  |
+|  id_func |  Chave primária | Chave primária referenciando coluna id_func da tabela funcionario | PRIMARY KEY (idfuncionario)  |
+|  id_coordena |  Chave estrangeira | Chave estrangeira referenciando coluna id_coordena da tabela advogado | FOREIGN KEY (id_coordena) REFERENCES advogado  |
