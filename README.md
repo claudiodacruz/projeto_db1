@@ -8,50 +8,28 @@ Cláudio - mat.
 # Índice
 
 1. Minimundo
-
 2. Modelo conceitual
-
 3. Modelo lógico
-
 4. Modelo lógico expandido
-
 5. Dicionário de dados
-
-5.1 Tabela Funcionário
-
-5.2 Tabela Secretária
-
-5.3 Tabela Contador
-
-5.4 Tabela Advogado
-
-5.5 Tabela Consulta
-
-5.6 Tabela Agenda
-
-5.7 Tabela Cliente
-
-5.8 Tabela Física
-
-5.9 Tabela Jurídica
-
-5.10 Tabela Telefone
-
-5.11 Tabela Gera
-
-5.12 Tabela Contrato
-
-5.13 Tabela Processo
-
-5.14 Tabela Vinculado
-
-5.15T abela Defensor
-
-5.16 Tabela Réu
-
-5.17 Tabela Juiz
-
-5.18 Tabela Vara
+- 5.1 Tabela Funcionário
+- 5.2 Tabela Secretária
+- 5.3 Tabela Contador
+- 5.4 Tabela Advogado
+- 5.5 Tabela Consulta
+- 5.6 Tabela Agenda
+- 5.7 Tabela Cliente
+- 5.8 Tabela Física
+- 5.9 Tabela Jurídica
+- 5.10 Tabela Telefone
+- 5.11 Tabela Gera
+- 5.12 Tabela Contrato
+- 5.13 Tabela Processo
+- 5.14 Tabela Vinculado
+- 5.15T abela Defensor
+- 5.16 Tabela Réu
+- 5.17 Tabela Juiz
+- 5.18 Tabela Vara
 
 ------------
 # 1. Minimundo de um escritório de advocacia
