@@ -26,10 +26,10 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 ![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_conceitual.png)
 
 # Modelo lógico
-![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo.png)
+![]()
 
 # Modelo lógico expandido
-![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo_expandido.png)
+![]()
 
 # Dicionário de dados
 
