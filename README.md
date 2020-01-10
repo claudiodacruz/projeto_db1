@@ -1,4 +1,38 @@
-# Minimundo de um escritório de advocacia
+# Equipe
+Gustavo Sousa Galisa Albuquerque - mat. 20191370046
+Gabriel Xavier - mat.
+Cláudio - mat.
+
+------------
+
+# Índice
+
+1. Minimundo
+2. Modelo conceitual
+3. Modelo lógico
+4. Modelo lógico expandido
+5. Dicionário de dados
+5.1 Tabela Funcionário
+5.2 Tabela Secretária
+5.3 Tabela Contador
+5.4 Tabela Advogado
+5.5 Tabela Consulta
+5.6 Tabela Agenda
+5.7 Tabela Cliente
+5.8 Tabela Física
+5.9 Tabela Jurídica
+5.10 Tabela Telefone
+5.11 Tabela Gera
+5.12 Tabela Contrato
+5.13 Tabela Processo
+5.14 Tabela Vinculado
+5.15T abela Defensor
+5.16 Tabela Réu
+5.17 Tabela Juiz
+5.18 Tabela Vara
+
+------------
+# 1. Minimundo de um escritório de advocacia
 
 Um escritório de advocacia tem três tipos de funcionários: secretária, que também faz a organização dos arquivos e precisa ter conhecimentos de arquivologia, contadores, para realizar perícias contábeis em processos de auditoria, e uma equipe de advogados, que atuam nas áreas civil, trabalhista e administrativa/tributária e são chefiados por um advogado;
 
@@ -22,18 +56,26 @@ O processo ainda está vinculado a uma vara, que conterá endereço e número es
 
 Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito, que possui nome e matrícula.
 
-# Modelo conceitual
+------------
+
+# 2. Modelo conceitual
 ![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_conceitual.png)
 
-# Modelo lógico
+------------
+
+# 3. Modelo lógico
 ![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo.png)
 
-# Modelo lógico expandido
+------------
+
+# 4. Modelo lógico expandido
 ![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo_expandido.png)
 
-# Dicionário de dados
+------------
 
-**Tabela Funcionário**
+# 5. Dicionário de dados
+
+**5.1 Tabela Funcionário**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -49,7 +91,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  idfuncionario |  Chave primária | Identificador do funcionário  | PRIMARY KEY (idfuncionario)  |
 | nome  | Chave alternativa  | Nome do funcionário  |  UNIQUE (nome) |  |
 
-**Tabela Secretária**
+**5.2 Tabela Secretária**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -64,7 +106,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  idfuncionario |  Chave primária | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario  |
 |  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
 
-**Tabela Contador**
+**5.3 Tabela Contador**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -79,7 +121,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | idfuncionario |  Chave primária | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario  |
 |  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
 
-**Tabela Advogado**
+**5.4 Tabela Advogado**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -96,7 +138,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
 |  id_coordena |  Chave estrangeira | Chave estrangeira referenciando coluna id_coordena da tabela advogado | FOREIGN KEY (id_coordena) REFERENCES advogado  |
 
-**Tabela Consulta**
+**5.5 Tabela Consulta**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -115,7 +157,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
 | data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
 
-**Tabela Agenda**
+**5.6 Tabela Agenda**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -131,7 +173,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
 | hora_inicio  | Chave candidata  | Indica a hora agendada  | AK_hora_inicio  | UNIQUE (hora_inicio) |
 
-**Tabela Cliente**
+**5.7 Tabela Cliente**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -147,7 +189,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idcliente |  Chave primária | Identificador do cliente  | PK_idcliente | PRIMARY KEY (idcliente)  |
 
-**Tabela Fisica**
+**5.8 Tabela Fisica**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -161,7 +203,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idcliente |  Chave primária | Identificador do cliente  | PK_idcliente | PRIMARY KEY (idcliente)  |
 
-**Tabela Juridica**
+**5.9 Tabela Juridica**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -175,7 +217,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idcliente |  Chave primária | Identificador do cliente  | PK_idcliente | PRIMARY KEY (idcliente)  |
 
-**Tabela Telefone**
+**5.10 Tabela Telefone**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -191,7 +233,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  fone |  Chave primária | Identificador do cliente  | PK_fone | PRIMARY KEY (fone)  |
 |  idcliente |  Chave estrangeira referenciando coluna idcliente da tabela cliente | Identificador do cliente  | PK_fone | FOREIGN KEY (idcliente) REFERENCES cliente  |
 
-**Tabela Gera**
+**5.11 Tabela Gera**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -212,7 +254,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
 | idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_idcontrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
 
-**Tabela Contrato**
+**5.12 Tabela Contrato**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -226,7 +268,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idcontrato |  Chave primária | Identificador do contrato  | PK_idcontrato | PRIMARY KEY (fidcontrato)  |
 
-**Tabela Processo**
+**5.13 Tabela Processo**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -252,7 +294,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
 | idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
 
-**Tabela Vinculado**
+**5.14 Tabela Vinculado**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -267,7 +309,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
 | idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
 
-**Tabela Defensor**
+**5.15 Tabela Defensor**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -284,7 +326,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | iddefensor  | Chave primária  | Identificador do advogado ou representante judicial do réu  |  PK_iddefensor | PRIMARY KEY (iddefensor)|
 | oab_def  | Chave candidata  | Identificador a identificação profissional do advogado que defende o réu  |  AK_oab_def | UNIQUE (oab_def) |
 
-**Tabela Réu**
+**5.16 Tabela Réu**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -301,7 +343,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idreu |  Chave primária | Identificador do reu  | PK_idreu | PRIMARY KEY (idreu)  |
 
-**Tabela Juiz**
+**5.17 Tabela Juiz**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -315,7 +357,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idjuiz |  Chave primária | Identificador do juiz  | PK_idjuiz | PRIMARY KEY (idjuiz)  |
 
-**Tabela Vara**
+**5.18 Tabela Vara**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
