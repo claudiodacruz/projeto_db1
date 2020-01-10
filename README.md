@@ -252,5 +252,87 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
 | idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
 
+**Tabela Vinculado**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idedefensor | int  | NÃO  |   |  X |  |
+| idreu | int  | NÃO  |   |  X |  | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
+| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
+
+**Tabela Defensor**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idedefensor | int  | NÃO  | X  |   |  |
+| nome | VARCHAR(45)  | NÃO  |   |   |  |
+| oab_def | INT  | NÃO  |   |   | X |
+| escritorio | VARCHAR(45)  | NÃO  |   |   |  | |
+
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| iddefensor  | Chave primária  | Identificador do advogado ou representante judicial do réu  |  PK_iddefensor | PRIMARY KEY (iddefensor)|
+| oab_def  | Chave candidata  | Identificador a identificação profissional do advogado que defende o réu  |  AK_oab_def | UNIQUE (oab_def) |
+
+**Tabela Réu**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idreu | INT  | NÃO  |  X |   |  |
+| nome | VARCHAR(45)  | NÃO  |   |   |  |
+| cidade | VARCHAR(45)  | NÃO  |   |   |  |
+| rua | VARCHAR(45)  | NÃO  |   |   |  |
+| email | INT  | NÃO  |   |   |  |
+| telefone | INT  | NÃO  |   |   |  |  |
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idreu |  Chave primária | Identificador do reu  | PK_idreu | PRIMARY KEY (idreu)  |
+
+**Tabela Juiz**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idjuiz | INT  | NÃO  |  X |   |  |
+| nome | VARCHAR(45)  | NÃO  |   |   |  |
+| matricula | INT  | NÃO  |   |   |  | |
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idjuiz |  Chave primária | Identificador do juiz  | PK_idjuiz | PRIMARY KEY (idjuiz)  |
+
+**Tabela Vara**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idvara | INT  | NÃO  |  X |   |  |
+| idjuiz | INT  | NÃO  |   | X  |  |
+| num_vara | INT  | NÃO  |   |   | X |
+| cidade | VARCHAR(45)  | NÃO  |   |   |  |
+| rua | VARCHAR(45)  | NÃO  |   |   |  |
+| estado | VARCHAR(45)  | NÃO  |   |   |  | |
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idvara |  Chave primária | Identificador da vara  | PK_idvara | PRIMARY KEY (idvara)  |
+| idjuiz  | Chave estrangeira referenciando coluna idjuiz da tabela juiz  | Identificador do  juiz  |  FK_idjuiz | FOREIGN KEY (idjuiz) REFERENCES juiz |
+| num_vara  | Chave estrangeira referenciando colunanum_vara da tabela vara  | Identificador da vara  |  AK_num_vara | UNIQUE(num_vara) |
+
 
 
