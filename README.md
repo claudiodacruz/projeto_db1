@@ -1,7 +1,7 @@
 # Equipe
-Gustavo Sousa Galisa Albuquerque - mat. 20191370046
-Gabriel Xavier - mat.
-Cláudio - mat.
+- Gustavo Sousa Galisa Albuquerque - mat. 20191370046
+- Gabriel Xavier - mat.
+- Cláudio - mat.
 
 ------------
 
