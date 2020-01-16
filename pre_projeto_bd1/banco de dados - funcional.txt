@@ -14,30 +14,30 @@ CREATE TABLE FUNCIONARIO(
 				telefone				INT			NOT NULL,
 				email					VARCHAR(45) NOT NULl,
 CONSTRAINT		PK_funcionario			PRIMARY KEY (idfuncionario),
-CONSTRAINT		AK_funcionario_nome		UNIQUE		(nome)
+CONSTRAINT		AK_funcionario			UNIQUE		(nome)
 )
 
 CREATE TABLE SECRETARIA(
 				idfuncionario			INT			NOT NULL,
 				cfa						INT			NOT NULL,
 CONSTRAINT		PK_secretaria			PRIMARY KEY (idfuncionario),
-CONSTRAINT		FK_funcionario1			FOREIGN KEY (idfuncionario) REFERENCES funcionario
+CONSTRAINT		FK_scretaria_funcionario			FOREIGN KEY (idfuncionario) REFERENCES funcionario
 )
 
 CREATE TABLE CONTADOR(
 				idfuncionario			INT			NOT NULL,
 				crc						INT			NOT NULL,
 CONSTRAINT		PK_contador			PRIMARY KEY (idfuncionario),
-CONSTRAINT		FK_funcionario2			FOREIGN KEY (idfuncionario) REFERENCES funcionario
+CONSTRAINT		FK_contador_funcionario			FOREIGN KEY (idfuncionario) REFERENCES funcionario
 )
 
 CREATE TABLE ADVOGADO(
 				idfuncionario			INT			NOT NULL,
 				oab						INT			NOT NULL,
-				id_coordena				INT			NOT NULL,
-CONSTRAINT		PK_funcionarioadv			PRIMARY KEY (idfuncionario),
-CONSTRAINT		FK_funcionario3			FOREIGN KEY (idfuncionario) REFERENCES funcionario,
-CONSTRAINT		FK_id_coordena			FOREIGN KEY (id_coordena)	REFERENCES advogado
+				id_coordenado				INT			NULL,
+CONSTRAINT		PK_advogado			PRIMARY KEY (idfuncionario),
+CONSTRAINT		FK_advogado			FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT		FK_id_coordenado			FOREIGN KEY (id_coordenado)	REFERENCES advogado
 )
 
 CREATE TABLE CLIENTE(
@@ -52,15 +52,15 @@ CREATE TABLE FISICA(
 				idcliente				INT			NOT NULL,
 				cpf						INT			NOT NULL,
 CONSTRAINT		PK_idclientefisico			PRIMARY KEY (idcliente),
-CONSTRAINT		FK_idcliente1			FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		FK_fisica_cliente			FOREIGN KEY (idcliente) REFERENCES cliente,
 CONSTRAINT		CK_cpf					CHECK		(LEN(cpf) = 11)
 )
 
 CREATE TABLE JURIDICA(
 				idcliente				INT			NOT NULL,
 				cnpj					INT			NOT NULL,
-CONSTRAINT		PK_idclientejuridico			PRIMARY KEY (idcliente),
-CONSTRAINT		FK_idcliente2			FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		PK_cliente_juridico			PRIMARY KEY (idcliente),
+CONSTRAINT		FK_juridica_cleinte			FOREIGN KEY (idcliente) REFERENCES cliente,
 CONSTRAINT		CK_cnpj					CHECK		(LEN(cnpj) = 14)
 )
 
@@ -69,7 +69,7 @@ CREATE TABLE TELEFONE(
 				fone					INT			NOT NULL,
 				tipo					VARCHAR(45) NOT NULL,
 CONSTRAINT		PK_fone					PRIMARY KEY (fone),
-CONSTRAINT		FK_idcliente3			FOREIGN KEY (idcliente) REFERENCES cliente
+CONSTRAINT		FK_fone_cliente			FOREIGN KEY (idcliente) REFERENCES cliente
 )
 
 CREATE TABLE AGENDA(
@@ -77,20 +77,20 @@ CREATE TABLE AGENDA(
 				idcliente				INT			NOT NULL,
 				dia						DATE		NOT NULL,
 CONSTRAINT		PK_dia					PRIMARY KEY (dia),
-CONSTRAINT		FK_idcliente4			FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		FK_agenda_cliente			FOREIGN KEY (idcliente) REFERENCES cliente,
 CONSTRAINT		AK_hora_inicio			UNIQUE		(hora_inicio)
 )
 
 CREATE TABLE CONSULTA(
 			idconsulta			INT			NOT NULL,	
 			idfuncionario		INT			NOT NULL,
-			pauta				INT			NOT NULL,
+			pauta				VARCHAR(45)			NOT NULL,
 			idcliente			INT			NOT NULL,
 			dia					DATE		NOT NULL,
-CONSTRAINT	PK_idconsulta		PRIMARY KEY (idconsulta),
-CONSTRAINT	FK_idfuncionarioconsulta	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
-CONSTRAINT	FK_idcliente5		FOREIGN KEY (idcliente)		REFERENCES cliente,
-CONSTRAINT	FK_dia				FOREIGN KEY (dia)			REFERENCES agenda
+CONSTRAINT	PK_consulta		PRIMARY KEY (idconsulta),
+CONSTRAINT	FK_consulta_funcionario	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT	FK_consulta_cliente		FOREIGN KEY (idcliente)		REFERENCES cliente,
+CONSTRAINT	FK_consulta_dia				FOREIGN KEY (dia)			REFERENCES agenda
 )
 
 CREATE TABLE CONTRATO(
@@ -106,11 +106,11 @@ CREATE TABLE GERA(
 			idcliente			INT			NOT NULL,
 			dia					DATE		NOT NULL,	
 			idcontrato			INT			NOT NULL,
-CONSTRAINT	FK_idconsultagera		FOREIGN KEY (idconsulta)	REFERENCES consulta,
-CONSTRAINT	FK_idfuncionariogera	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
-CONSTRAINT	FK_idclientegera		FOREIGN KEY (idcliente)		REFERENCES cliente,
-CONSTRAINT	FK_diagera				FOREIGN KEY (dia)			REFERENCES agenda,
-CONSTRAINT	FK_idcontratogera		FOREIGN KEY (idcontrato	)   REFERENCES contrato	
+CONSTRAINT	FK_consulta_gera		FOREIGN KEY (idconsulta)	REFERENCES consulta,
+CONSTRAINT	FK_funcionario_gera	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT	FK_cliente_gera		FOREIGN KEY (idcliente)		REFERENCES cliente,
+CONSTRAINT	FK_dia_gera				FOREIGN KEY (dia)			REFERENCES agenda,
+CONSTRAINT	FK_contrato_gera		FOREIGN KEY (idcontrato	)   REFERENCES contrato	
 )
 
 CREATE TABLE DEFENSOR(
@@ -118,8 +118,8 @@ CREATE TABLE DEFENSOR(
 				nome				VARCHAR(45)	NOT NULL,		
 				oab_def				INT			NOT NULL,
 				escritorio			VARCHAR(45)	NOT NULL,
-CONSTRAINT		PK_iddefensor		PRIMARY KEY (iddefensor),
-CONSTRAINT		AK_oab_def			UNIQUE		(oab_def)
+CONSTRAINT		PK_defensor		PRIMARY KEY (iddefensor),
+CONSTRAINT		AK_defensor			UNIQUE		(oab_def)
 )
 
 CREATE TABLE REU(
@@ -129,14 +129,14 @@ CREATE TABLE REU(
 			rua			VARCHAR(45)	NOT NULL,	
 			email		INT			NOT NULL,		
 			telefone	INT			NOT NULL,
-CONSTRAINT	PK_idreu	PRIMARY KEY (idreu)
+CONSTRAINT	PK_	reu	PRIMARY KEY (idreu)
 )
 
 CREATE TABLE JUIZ(
 			idjuiz		INT			NOT NULL,
 			nome		VARCHAR(45)	NOT NULL,			
 			matricula	INT			NOT NULL,
-CONSTRAINT	PK_idjuiz	PRIMARY KEY (idjuiz)
+CONSTRAINT	PK_juiz	PRIMARY KEY (idjuiz)
 )
 
 CREATE TABLE VARA(
@@ -146,16 +146,16 @@ CREATE TABLE VARA(
 			cidade			VARCHAR(45)	NOT NULL,	
 			rua				VARCHAR(45)	NOT NULL,			
 			estado			VARCHAR(45)	NOT NULL,
-CONSTRAINT	PK_idvara		PRIMARY KEY (idvara),
-CONSTRAINT	FK_idjuiz		FOREIGN KEY (idjuiz) REFERENCES juiz,
-CONSTRAINT	AK_num_vara		UNIQUE		(num_vara)
+CONSTRAINT	PK_vara			PRIMARY KEY (idvara),
+CONSTRAINT	FK_vara_juiz		FOREIGN KEY (idjuiz) REFERENCES juiz,
+CONSTRAINT	AK_vara			UNIQUE		(num_vara)
 )
 
 CREATE TABLE VINCULADO(
 			iddefensor		INT			NOT NULL,
 			idreu			INT			NOT NULL,
-CONSTRAINT	FK_iddefensorvin	FOREIGN KEY (iddefensor) REFERENCES defensor,
-CONSTRAINT	FK_idreu		FOREIGN KEY (idreu) REFERENCES reu
+CONSTRAINT	FK_vinculado_defensor	FOREIGN KEY (iddefensor) REFERENCES defensor,
+CONSTRAINT	FK_vinculado_reu		FOREIGN KEY (idreu) REFERENCES reu
 )
 
 CREATE TABLE PROCESSO(
@@ -167,12 +167,12 @@ CREATE TABLE PROCESSO(
 			numProcesso			INT	NOT NULL,
 			iddefensor			INT	NOT NULL,
 			idreu				INT	NOT NULL,
-CONSTRAINT	PK_idprocesso		PRIMARY KEY (idprocesso),
-CONSTRAINT	FK_idconsultaproc		FOREIGN KEY (idconsulta) REFERENCES consulta,
-CONSTRAINT	FK_diaproc				FOREIGN KEY (dia)			REFERENCES agenda,
-CONSTRAINT	FK_idcontratoproc		FOREIGN KEY (idcontrato	)   REFERENCES contrato,
-CONSTRAINT	FK_idvaraproc			FOREIGN KEY (idvara) REFERENCES vara,
-CONSTRAINT	FK_iddefensorproc		FOREIGN KEY (iddefensor) REFERENCES defensor,
-CONSTRAINT	FK_idreuproc			FOREIGN KEY (idreu) REFERENCES reu,
+CONSTRAINT	PK_processo		PRIMARY KEY (idprocesso),
+CONSTRAINT	FK_processo_consulta		FOREIGN KEY (idconsulta) REFERENCES consulta,
+CONSTRAINT	FK_processo_dia				FOREIGN KEY (dia)			REFERENCES agenda,
+CONSTRAINT	FK_processo_contrato		FOREIGN KEY (idcontrato	)   REFERENCES contrato,
+CONSTRAINT	FK_processo_vara			FOREIGN KEY (idvara) REFERENCES vara,
+CONSTRAINT	FK_processo_defensor		FOREIGN KEY (iddefensor) REFERENCES defensor,
+CONSTRAINT	FK_processo_reu			FOREIGN KEY (idreu) REFERENCES reu,
 CONSTRAINT	CK_numProcesso		CHECK		(LEN(numProcesso) = 20)
 )
