@@ -75,6 +75,8 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 # 5. Dicionário de dados
 
+# 5. Dicionário de dados
+
 **5.1 Tabela Funcionário**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
@@ -86,57 +88,60 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 - Constraints:
 
-| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO |
-| ------------ | ------------ | ------------ | ------------ |
-|  idfuncionario |  Chave primária | Identificador do funcionário  | PRIMARY KEY (idfuncionario)  |
-| nome  | Chave alternativa  | Nome do funcionário  |  UNIQUE (nome) |  |
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idfuncionario |  Chave primária | Identificador do funcionário  | PK_funcionario  | PRIMARY KEY (idfuncionario) |
+| nome  | Chave alternativa  | Nome do funcionário  | AK_funcionario  | UNIQUE (nome) | |
 
 **5.2 Tabela Secretária**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  id_func |  INT | NÃO  |   | x  | |
-| cfa  | INT  | NÃO  |   |   | | |
+|  idfuncionario |  INT | NÃO  |   | x  | |
+| cfa  | INT  | NÃO  |   |   | x| |
 
 
 - Constraints:
 
-| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO |
-| ------------ | ------------ | ------------ | ------------ |
-|  idfuncionario |  Chave primária | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario  |
-|  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idfuncionario |  Chave primária | Identificador do funcionário | PK_secretaria | PRIMARY KEY (idfuncionario)  |
+|  idfuncionario | Chave estrangeira | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FK_scretaria_funcionario  |  FOREIGN KEY (idfuncionario) REFERENCES funcionario |
+|  cfa |  Chave candidata  | Indica o registro no Conselho Federal de Arquivologia  | AK_secretaria  | UNIQUE (cfa) |
 
 **5.3 Tabela Contador**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  id_func |  INT | NÃO  |   | x  | |
-| crc  | INT  | NÃO  |   |   | | |
+|  idfuncionario |  INT | NÃO  |   | x  | |
+| crc  | INT  | NÃO  |   |   | x | |
 
 
 - Constraints:
 
-| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO
-| ------------ | ------------ | ------------ | ------------ |
-| idfuncionario |  Chave primária | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario  |
-|  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idfuncionario |  Chave primária | Identificador do funcionario | PK_contador | PRIMARY KEY (idfuncionario)  |
+|  idfuncionario | Chave estrangeira |  Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FK_contador_funcionario  |  FOREIGN KEY (idfuncionario) REFERENCES funcionario |
+|  crc |  Chave candidata  | Indica o registro no Conselho Regional de Contabilidade  | AK_contador  | UNIQUE (crc) |
 
 **5.4 Tabela Advogado**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  id_func |  INT | NÃO  |   | x  | |
-| oab  | INT  | NÃO  |   |   | |
+|  idfuncionario |  INT | NÃO  |   | x  | |
+| oab  | INT  | NÃO  |   |   |x |
 | id_coordena  | INT  | NÃO  |   |  x | | |
 
 
 - Constraints:
 
-| COLUNA |TIPO  | DESCRIÇÃO  | EXPRESSÃO
-| ------------ | ------------ | ------------ | ------------ |
-|  idfuncionario |  Chave primária | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario  |
-|  idfuncionario |  Chave primária | Chave primária referenciando coluna idfuncionario da tabela funcionario | PRIMARY KEY (idfuncionario)  |
-|  id_coordena |  Chave estrangeira | Chave estrangeira referenciando coluna id_coordena da tabela advogado | FOREIGN KEY (id_coordena) REFERENCES advogado  |
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idfuncionario |  Chave primária | Identificador do funcionario | PK_advogado | PRIMARY KEY (idfuncionario)  |
+|  idfuncionario | Chave estrangeira |  Chave estrangeira referenciando coluna idfuncionario da tabela funcionario |FK_advogado_funcionario	  |  FOREIGN KEY (idfuncionario) REFERENCES funcionario |
+|  oab |  Chave candidata  | Indica o registro no Ordem ods Advogados do Brasil  | AK_advogado  | UNIQUE (oab) |
+|  id_coordena |  Chave estrangeira | Chave estrangeira referenciando coluna id_coordena da tabela advogado |FK_id_coordenado | FOREIGN KEY (id_coordena) REFERENCES advogado  |
 
 **5.5 Tabela Consulta**
 
@@ -144,18 +149,15 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idconsulta |  INT | NÃO  | X  |   | |
 | idfuncionario  | INT  | NÃO  |   | X  | |
-| pauta  |INT  | NÃO  |   |   | |
-| idcliente | INT  | NÃO  |   |  X |  |
-| data | DATE  | NÃO  |   |  X |  | |
+| pauta  | VARCHAR(45)  | NÃO  |   |   | | |
 
 - Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idconsulta |  Chave primária | Identificador da consulta  | PK_idconsulta | PRIMARY KEY (idconsulta)  |
-| idfuncionario  | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario  | Nome do funcionário  |  FK_idfuncionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario |
-| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
-| data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
+|  idconsulta |  Chave primária | Identificador da consulta  | PK_consulta | PRIMARY KEY (idconsulta)  |
+| idfuncionario  | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario  | Nome do funcionário  |  FK_consulta_funcionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario |
+
 
 **5.6 Tabela Agenda**
 
@@ -163,14 +165,16 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  hora_inicio |  TIME | NÃO  |   |   | X|
 | idcliente | INT  | NÃO  |   |  X |  |
-| data | DATE  | NÃO  |  X |   |  | |
+| dia | DATE  | NÃO  |  X |   |  | 
+| idconsulta | INT | NÃO  |   |  X |  | |
 
 - Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  data |  Chave primária | Identificador da consulta  | PK_data | PRIMARY KEY (data)  |
-| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
+|  dia |  Chave primária | Identificador da consulta  | PK_dia | PRIMARY KEY (dia)  |
+| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_agenda_cliente | FOREIGN KEY (idcliente) REFERENCES cliente |
+| idconsulta  | Chave estrangeira referenciando coluna idconsulta da tabela consulta  | Identificador da consulta  |  FK_agenda_consulta | FOREIGN KEY (idconsulta) REFERENCES consulta |
 | hora_inicio  | Chave candidata  | Indica a hora agendada  | AK_hora_inicio  | UNIQUE (hora_inicio) |
 
 **5.7 Tabela Cliente**
@@ -180,7 +184,6 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | idcliente | INT  | NÃO  |  X |   |  |
 | nomeCliente | VARCHAR(45)  | NÃO  |   |   |  |
 | rua | VARCHAR(45)  | NÃO  |   |   |  |
-| numero | INT  | NÃO  |   |   |  |
 | bairro | VARCHAR(45)  | NÃO  |   |   |  |  |
 
 - Constraints:
@@ -197,11 +200,14 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | cpf | INT  | NÃO  |   |   | X |
 
 
-- Constraints: (**CORRIGIR E ADICIONAR CHECK**)
+- Constraints: 
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idcliente |  Chave primária | Identificador do cliente  | PK_idcliente | PRIMARY KEY (idcliente)  |
+|  idcliente |  Chave primária | Identificador do cliente  | PK_cliente_fisico | PRIMARY KEY (idcliente)  |
+|  idcliente | Chave estrangeira |  Chave estrangeira referenciando coluna idclienteda tabela cliente | FK_fisico_cliente  |  FOREIGN KEY (idcliente) REFERENCES cliente |
+|  cpf |  Chave candidata  | Indica o CPF  | AK_cpf  | UNIQUE (cpf) |
+|  cpf |  Check  | Confere se o CPF tem a quantidade correta de números  | CK_cpf  | CHECK		(LEN(cpf) = 11) |
 
 **5.9 Tabela Juridica**
 
@@ -211,11 +217,14 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | cnpj | INT  | NÃO  |   |   | X |
 
 
-- Constraints: (**CORRIGIR E ADICIONAR CHECK**)
+- Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idcliente |  Chave primária | Identificador do cliente  | PK_idcliente | PRIMARY KEY (idcliente)  |
+|  idcliente |  Chave primária | Identificador do cliente  | PK_cliente_juridico | PRIMARY KEY (idcliente)  |
+|  idcliente | Chave estrangeira |  Chave estrangeira referenciando coluna idclienteda tabela cliente | FK_juridica_cleinte  |  FOREIGN KEY (idcliente) REFERENCES cliente |
+|  cnpj |  Chave candidata  | Indica o CNPJ  | AK_cnpj  | UNIQUE (cnpj) |
+|  cnpj |  Check  | Confere se o CNPJ tem a quantidade correta de números  | CK_cnpj  | CHECK		(LEN(cnpj) = 11) |
 
 **5.10 Tabela Telefone**
 
@@ -223,24 +232,23 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | fone | INT  | NÃO  |  X |   |  |
 | idcliente | INT  | NÃO  |   |  X |  |
-| tipo | VARCHAR(45)  | NÃO  |   |   |  |
+| tipo | VARCHAR(45)  | NÃO  |   |   |  | |
 
 
-- Constraints: (**CORRIGIR E ADICIONAR CHECK**)
+- Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  fone |  Chave primária | Identificador do cliente  | PK_fone | PRIMARY KEY (fone)  |
-|  idcliente |  Chave estrangeira referenciando coluna idcliente da tabela cliente | Identificador do cliente  | PK_fone | FOREIGN KEY (idcliente) REFERENCES cliente  |
+|  idcliente |  Chave estrangeira referenciando coluna idcliente da tabela cliente | Identificador do cliente  | FK_fone_cliente | FOREIGN KEY (idcliente) REFERENCES cliente  |
 
 **5.11 Tabela Gera**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idconsulta |  INT | NÃO  |   | X  | |
-| idfuncionario  | INT  | NÃO  |   | X  | |
 | idcliente | INT  | NÃO  |   |  X |  |
-| data | DATE  | NÃO  |   |  X |  |
+| dia | DATE  | NÃO  |  X |   |  |
 | idcontrato | int  | NÃO  |   |  X |  | |
 
 
@@ -248,11 +256,10 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idconsulta |  Chave estrangeira referenciando coluna idconsulta da tabela consulta | Identificador da consulta  | FK_idconsulta | FOREIGN KEY (idconsulta) REFERENCES consulta  |
-| idfuncionario  | Chave estrangeira referenciando coluna idfuncionario da tabela funcionario  | Nome do funcionário que realizou a consulta  |  FK_idfuncionario | FOREIGN KEY (idfuncionario) REFERENCES funcionario |
-| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_idcliente | FOREIGN KEY (idcliente) REFERENCES cliente |
-| data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
-| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_idcontrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
+|  idconsulta |  Chave estrangeira referenciando coluna idconsulta da tabela consulta | Identificador da consulta  | FK_gera_consulta | FOREIGN KEY (idconsulta) REFERENCES consulta  |
+| idcliente  | Chave estrangeira referenciando coluna idcliente da tabela cliente  | Identificador do cliente  |  FK_gera_cliente | FOREIGN KEY (idcliente) REFERENCES cliente |
+| dia  | Chave rpimária  | Identificador da data  |  PK_dia | PRIMARY KEY (dia)|
+| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_gera_contrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
 
 **5.12 Tabela Contrato**
 
@@ -260,54 +267,62 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idcontrato | INT  | NÃO  |  X |   |  |
 | numero_contrato | INT  | NÃO  |   |   | X |
+| valor | INT  | NÃO  |   |   | | |
 
 
 - Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idcontrato |  Chave primária | Identificador do contrato  | PK_idcontrato | PRIMARY KEY (fidcontrato)  |
+|  idcontrato |  Chave primária | Identificador do contrato  | PK_contrato | PRIMARY KEY (idcontrato)  |
+|  numero_contrato |  Chave candidata | Identificador alternativo do contrato  | AK_contrato | UNIQUE (numero_contrato)  |	
 
 **5.13 Tabela Processo**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idprocesso |  INT | NÃO  |  X |   | |
-|  idconsulta |  INT | NÃO  |   | X  | |
-| idcontrato | int  | NÃO  |   |  X |  |
-| data | DATE  | NÃO  |   |  X |  |
-| idvara | int  | NÃO  |   |  X |  |
-| numProcesso | int  | NÃO  |   |   | X |
-| idedefensor | int  | NÃO  |   |  X |  |
-| idreu | int  | NÃO  |   |  X |  | |
+| numProcesso | INT  | NÃO  |   |   | X |
+|  idcontrato |  INT | NÃO  |   | X  | |
+| idedefensor | INT  | NÃO  |   |  X |  |
+| idreu | INT  | NÃO  |   |  X |  | 
+| idtestemunha | INT  | NÃO  |   |  X |  |
+| idvara | INT  | NÃO  |   |  X |  |
+| idjuiz | INT  | NÃO  |   |  X | |  |
+
+
 
 
 - Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idprocesso |  Chave primária | Identificador do processo  | PK_idconsulta | PRIMARY KEY (idprocesso) |
-|  idconsulta |  Chave estrangeira referenciando coluna idconsulta da tabela consulta | Identificador da consulta  | FK_idconsulta | FOREIGN KEY (idconsulta) REFERENCES consulta  |
-| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_idcontrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
-| data  | Chave estrangeira referenciando coluna data da tabela agenda  | Identificador da data  |  FK_data | FOREIGN KEY (data) REFERENCES agenda |
-| idvara  | Chave estrangeira referenciando coluna idvara da tabela vara  | Identifica a vara ao qual o processo está vinculado  |  FK_idvara | FOREIGN KEY (idvara) REFERENCES vara |
-| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
-| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
+|  idprocesso |  Chave primária | Identificador do processo  | PK_processo | PRIMARY KEY (idprocesso) |
+| idcontrato  | Chave estrangeira referenciando coluna contrato da tabela contrato  | Identificador do contrato  |  FK_processo_contrato | FOREIGN KEY (idcontrato) REFERENCES contrato |
+| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_processo_defensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
+| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_processo_reu | FOREIGN KEY (idreu) REFERENCES reu |
+| idtestemunha  | Chave estrangeira referenciando coluna idtestemunha da tabela testemunha  | Identificador da testemunha  |  FK_processo_testemunha | FOREIGN KEY (idtestemunha) REFERENCES testemunha|
+| idvara  | Chave estrangeira referenciando coluna idvara da tabela vara  | Identifica a vara ao qual o processo está vinculado  |  FK_processo_vara | FOREIGN KEY (idvara) REFERENCES vara |
+| idjuiz  | Chave estrangeira referenciando coluna idjuiz da tabela juiz  | Identifica o juiz ao qual o processo está vinculado  |  FK_processo_juiz | FOREIGN KEY (idjuiz) REFERENCES juiz |
+| numProcesso  | Chave candidata  | Identificação única do processo  |  AK_Processo | FUNIQUE		(numProcesso) |
+| numProcesso  | Check  | Checa se o número do processo possui a quantidade correta de dígitos  |  CK_numProcesso | CHECK (LEN(numProcesso) = 20)
 
 **5.14 Tabela Vinculado**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idedefensor | int  | NÃO  |   |  X |  |
-| idreu | int  | NÃO  |   |  X |  | |
+| idreu | int  | NÃO  |   |  X |  | 
+| idtestemunha | int  | NÃO  |   |  X |  | |
 
 
 - Constraints:
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_iddefensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
-| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_idreu | FOREIGN KEY (idreu) REFERENCES reu |
+| iddefensor  | Chave estrangeira referenciando coluna iddefensor da tabela defensor  | Identificador do advogado ou representante judicial do réu  |  FK_vinculado_defensor | FOREIGN KEY (iddefensor) REFERENCES defensor |
+| idreu  | Chave estrangeira referenciando coluna idreu da tabela reu  | Identificador do  réu  |  FK_vinculado_reu | FOREIGN KEY (idreu) REFERENCES reu |
+| idtestemunha  | Chave estrangeira referenciando coluna idtestemunha da tabela testemunha | Identificador da testemunha  |  FK_vinculado_testemunha | FOREIGN KEY (idtestemunha) REFERENCES testemunha |
 
 **5.15 Tabela Defensor**
 
@@ -343,6 +358,22 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idreu |  Chave primária | Identificador do reu  | PK_idreu | PRIMARY KEY (idreu)  |
 
+**5.16 Tabela Testemunha**
+
+| ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| idtestemunha | INT  | NÃO  |  X |   |  |
+| nome | VARCHAR(45)  | NÃO  |   |   | X |
+| telefone | INT  | NÃO  |   |   |  |  
+| email | INT  | SIM  |   |   |  | |
+
+- Constraints:
+
+| COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|  idtestemunha |  Chave primária | Identificador da testemunha  | PK_testemunha | PRIMARY KEY (idtestemunha)  |
+|  nome |  Chave candidata | Nome da testemunha  | AK_testemunha | UNIQUE (nome)  |
+
 **5.17 Tabela Juiz**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
@@ -355,7 +386,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idjuiz |  Chave primária | Identificador do juiz  | PK_idjuiz | PRIMARY KEY (idjuiz)  |
+|  idjuiz |  Chave primária | Identificador do juiz  | PK_juiz | PRIMARY KEY (idjuiz)  |
 
 **5.18 Tabela Vara**
 
@@ -373,8 +404,5 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | COLUNA |TIPO  | DESCRIÇÃO  | NOME | EXPRESSÃO
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idvara |  Chave primária | Identificador da vara  | PK_idvara | PRIMARY KEY (idvara)  |
-| idjuiz  | Chave estrangeira referenciando coluna idjuiz da tabela juiz  | Identificador do  juiz  |  FK_idjuiz | FOREIGN KEY (idjuiz) REFERENCES juiz |
-| num_vara  | Chave estrangeira referenciando colunanum_vara da tabela vara  | Identificador da vara  |  AK_num_vara | UNIQUE(num_vara) |
-
-
-
+| idjuiz  | Chave estrangeira referenciando coluna idjuiz da tabela juiz  | Identificador do  juiz  |  FK_vara_juiz | FOREIGN KEY (idjuiz) REFERENCES juiz |
+| num_vara  | Chave estrangeira referenciando colunanum_vara da tabela vara  | Identificador da vara  |  AK_vara | UNIQUE(num_vara) |
