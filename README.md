@@ -59,7 +59,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 ------------
 
 # 2. Modelo conceitual
-![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_conceitual.png)
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/projeto_bd_1/Conceitual_1_FINAL.brM3)
 
 ------------
 
@@ -69,7 +69,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 ------------
 
 # 4. Modelo lógico expandido
-![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo_expandido.png)
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/projeto_bd_1/modelo_completo_expandido_definitivo.png)
 
 ------------
 
