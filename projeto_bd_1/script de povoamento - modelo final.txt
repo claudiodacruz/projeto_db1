@@ -33,6 +33,7 @@ insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (2, 'Sherlock B
 insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (3, 'Janenna Maddaford', 'Moulton Court', 'Brisamar');
 insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (4, 'Lucy Overstreet', 'Gerald Hill', 'Altiplano');
 insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (5, 'Lita Treagus', 'Grasskamp Drive', 'Centro');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (6, 'Creusa Marcelino', 'Jagua street', 'Jaguaribe');
 
 /**Tabela Física**/
 insert into FISICA (idcliente, cpf) values (1, 84138701001);
@@ -42,6 +43,7 @@ insert into FISICA (idcliente, cpf) values (3, 94002059022);
 /**Tabela Jurídica**/
 insert into JURIDICA (idcliente, cnpj) values (4, 36808061000127);
 insert into JURIDICA (idcliente, cnpj) values (5, 70897293000137);
+insert into JURIDICA (idcliente, cnpj) values (6, 50897293100137);
 
 /**Tabela Telefone**/
 insert into TELEFONE (idcliente, fone, tipo) values (1, '1212265854', 'Celular');
