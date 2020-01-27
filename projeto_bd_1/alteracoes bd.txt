@@ -1,0 +1,40 @@
+/**Modifica OAB de um advogado**/
+UPDATE advogado
+SET oab = 20209
+WHERE idfuncionario = 9
+
+/**Modifica telefone e tipo**/
+UPDATE telefone
+SET fone = 2007573677, tipo = Fixo
+WHERE idclient = 4 AND tipo = Celular
+
+/**Deleta clientes sem agendamento**/
+DELETE FROM cliente
+WHERE idcliente NOT IN (SELECT idcliente 
+		    FROM AGENDA)
+
+/**Deleta funcionario**/
+DELETE FROM funcionario
+WHERE idfuncionario = 2
+
+• IN
+• NOT IN
+• BETWEEN
+• NOT BETWEEN
+• IS NULL
+• IS NOT NULL
+• LIKE
+• NOT LIKE
+• ORDER BY
+• COUNT
+• SUM
+• AVG
+• MAX
+• MIN
+• GROUP BY
+• HAVING
+• INNER JOIN
+• LEFT JOIN
+• RIGHT JOIN
+• FULL JOIN
+• SUBCONSULTA
