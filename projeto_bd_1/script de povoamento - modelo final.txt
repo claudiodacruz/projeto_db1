@@ -20,12 +20,12 @@ insert into CONTADOR (idfuncionario, crc) values (3, 1208);
 insert into CONTADOR (idfuncionario, crc) values (4, 1229);
 
 /**Tabela Advogado**/
-insert into ADVOGADO (idfuncionario, oab) values (5, 20831);
-insert into ADVOGADO (idfuncionario, oab) values (6, 17156);
-insert into ADVOGADO (idfuncionario, oab) values (7, 23056);
-insert into ADVOGADO (idfuncionario, oab) values (8, 22430);
-insert into ADVOGADO (idfuncionario, oab) values (9, 23328);
-insert into ADVOGADO (idfuncionario, oab) values (10, 22717);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (5, 20831);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (6, 17156, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (7, 23056, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (8, 22430, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (9, 23328, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (10, 22717, 5);
 
 /**Tabela Cliente**/
 insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (1, 'Lelia McNelly', 'Eggendart Drive', 'Torre');
