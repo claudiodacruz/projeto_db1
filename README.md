@@ -1,7 +1,7 @@
 # Equipe
 - Gustavo Sousa Galisa Albuquerque - mat. 20191370046
-- Gabriel Xavier - mat. 20191370046
-- Cláudio - mat.
+- Gabriel Xavier - mat. 20191370025
+- Cláudio Cruz - mat. 20191370006
 
 ------------
 
