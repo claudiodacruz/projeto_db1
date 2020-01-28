@@ -98,8 +98,9 @@ CONSTRAINT		AK_hora_inicio			UNIQUE		(hora_inicio)
 
 
 CREATE TABLE CONTRATO(
-				idcontrato			BIGINT		NOT NULL,		
+				idcontrato		BIGINT		NOT NULL,		
 				numero_contrato		BIGINT		NOT NULL,
+				valor			BIGINT		NOT NULL,
 CONSTRAINT		PK_contrato			PRIMARY KEY (idcontrato),
 CONSTRAINT		AK_contrato			UNIQUE		(numero_contrato)
 )
