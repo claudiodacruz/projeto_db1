@@ -31,6 +31,8 @@
 - 5.17 Tabela Testemunha
 - 5.18 Tabela Juiz
 - 5.19 Tabela Vara
+6. Script de Criação do BD
+7. Script de povoamento do BD
 
 ------------
 # 1. Minimundo de um escritório de advocacia
