@@ -68,11 +68,11 @@ insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('8:05', 5, 
 
 /**Tabela Contrato**/
 
-insert into CONTRATO (idcontrato, numero_contrato) values (59520, 1000235);
-insert into CONTRATO (idcontrato, numero_contrato) values (2578, 1000257);
-insert into CONTRATO (idcontrato, numero_contrato) values (101, 1000784);
-insert into CONTRATO (idcontrato, numero_contrato) values (1125, 1000001);
-insert into CONTRATO (idcontrato, numero_contrato) values (9668, 1000425);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (59520, 1000235, 150000);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (2578, 1000257, 78000);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (101, 1000784, 900);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (1125, 1000001, 3769050);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (9668, 1000425, 12300);
 
 
 /**Tabela Gera**/
