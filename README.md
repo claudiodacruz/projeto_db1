@@ -78,7 +78,6 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 # 5. Dicionário de dados
 
-# 5. Dicionário de dados
 
 **5.1 Tabela Funcionário**
 
@@ -409,3 +408,339 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  idvara |  Chave primária | Identificador da vara  | PK_idvara | PRIMARY KEY (idvara)  |
 | idjuiz  | Chave estrangeira referenciando coluna idjuiz da tabela juiz  | Identificador do  juiz  |  FK_vara_juiz | FOREIGN KEY (idjuiz) REFERENCES juiz |
 | num_vara  | Chave estrangeira referenciando colunanum_vara da tabela vara  | Identificador da vara  |  AK_vara | UNIQUE(num_vara) |
+
+
+# 6. Script de Criação do BD
+
+```sql
+/***Cria o banco de dados***/
+CREATE DATABASE ProjetoEscritorio2
+GO
+
+
+/***Utiliza o banco de dados criado anteriormente***/
+USE ProjetoEscritorio2
+GO
+
+/***Cria tabelas***/
+CREATE TABLE FUNCIONARIO(
+			      	idfuncionario		 INT			      NOT NULL,		
+			      	nome					   VARCHAR(45)	  NOT NULL,
+			      	telefone			   BIGINT		    NOT NULL,
+				      email					   VARCHAR(45)  NOT NULl,
+CONSTRAINT		PK_funcionario	PRIMARY KEY (idfuncionario),
+CONSTRAINT		AK_funcionario	UNIQUE		(nome)
+)
+
+CREATE TABLE SECRETARIA(
+				      idfuncionario				      INT			NOT NULL,
+              cfa							          INT			NOT NULL,
+CONSTRAINT		PK_secretaria				      PRIMARY KEY (idfuncionario),
+CONSTRAINT		FK_scretaria_funcionario	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT		AK_secretaria				      UNIQUE		(cfa)
+)
+
+CREATE TABLE CONTADOR(
+				     idfuncionario			      INT			NOT NULL,
+				      crc						          INT			NOT NULL,
+CONSTRAINT		PK_contador				      PRIMARY KEY (idfuncionario),
+CONSTRAINT		FK_contador_funcionario	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT		AK_contador				      UNIQUE		(crc)
+)
+
+CREATE TABLE ADVOGADO(
+             idfuncionario		        INT			NOT NULL,
+				      oab						          INT			NOT NULL,
+              id_coordenado			      INT			NULL,
+CONSTRAINT		PK_advogado				      PRIMARY KEY (idfuncionario),
+CONSTRAINT		FK_advogado_funcionario	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+CONSTRAINT		FK_id_coordenado		    FOREIGN KEY (id_coordenado)	REFERENCES advogado,
+CONSTRAINT		AK_advogado				      UNIQUE		  (oab)
+)
+
+CREATE TABLE CLIENTE(
+              idcliente			INT			    NOT NULL,
+			      	nomeCliente		VARCHAR(45)	NOT NULL,
+				      rua						VARCHAR(45)	NOT NULL,
+				      bairro				VARCHAR(45)	NOT NULL,
+CONSTRAINT		PK_idcliente	PRIMARY KEY (idcliente)
+)
+
+CREATE TABLE FISICA(
+				      idcliente				    INT			  NOT NULL,
+				      cpf						      BIGINT		NOT NULL,
+CONSTRAINT		PK_cliente_fisico	  PRIMARY KEY (idcliente),
+CONSTRAINT		FK_fisica_cliente		FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		AK_cpf					    UNIQUE		(cpf),
+CONSTRAINT		CK_cpf					    CHECK		(LEN(cpf) = 11)
+)
+
+CREATE TABLE JURIDICA(
+				      idcliente				      INT			NOT NULL,
+				      cnpj					        BIGINT	NOT NULL,
+CONSTRAINT		PK_cliente_juridico		PRIMARY KEY (idcliente),
+CONSTRAINT		FK_juridica_cleinte		FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		AK_cnpj					      UNIQUE		(cnpj),
+CONSTRAINT		CK_cnpj					      CHECK		(LEN(cnpj) = 14)
+)
+
+CREATE TABLE TELEFONE(
+				      idcliente				  INT			    NOT NULL,
+				      fone					    BIGINT		  NOT NULL,
+				      tipo					    VARCHAR(45) NOT NULL,
+CONSTRAINT		PK_fone					  PRIMARY KEY (fone),
+CONSTRAINT		FK_fone_cliente		FOREIGN KEY (idcliente) REFERENCES cliente
+)
+
+CREATE TABLE CONSULTA(
+			      idconsulta				      BIGINT		  NOT NULL,	
+			      idfuncionario			      INT			    NOT NULL,
+			      pauta					          VARCHAR(45)	NOT NULL,
+CONSTRAINT	PK_consulta				      PRIMARY KEY (idconsulta),
+CONSTRAINT	FK_consulta_funcionario	FOREIGN KEY (idfuncionario) REFERENCES funcionario,
+)
+
+CREATE TABLE AGENDA(
+				      hora_inicio				  TIME		NOT NULL,
+				      idcliente				    INT			NOT NULL,
+				      dia						      DATE		NOT NULL,
+				      idconsulta				  BIGINT	NOT NULL,
+CONSTRAINT		PK_dia					    PRIMARY KEY (dia),
+CONSTRAINT		FK_agenda_cliente		FOREIGN KEY (idcliente) REFERENCES cliente,
+CONSTRAINT		FK_agenda_consulta	FOREIGN KEY (idconsulta) REFERENCES consulta,
+CONSTRAINT		AK_hora_inicio			UNIQUE		(hora_inicio)
+)
+
+
+CREATE TABLE CONTRATO(
+				      idcontrato		    BIGINT		NOT NULL,		
+				      numero_contrato	  BIGINT		NOT NULL,
+              valor			        BIGINT		NOT NULL,
+CONSTRAINT		PK_contrato		    PRIMARY KEY (idcontrato),
+CONSTRAINT		AK_contrato		    UNIQUE		(numero_contrato)
+)
+
+CREATE TABLE GERA(
+			      idconsulta				BIGINT		  NOT NULL,
+			      idcliente				  INT			    NOT NULL,
+			      dia						    DATE		    NOT NULL,	
+			      idcontrato				BIGINT			NOT NULL,
+CONSTRAINT	FK_gera_consulta	FOREIGN KEY (idconsulta)	REFERENCES consulta,
+CONSTRAINT	FK_gera_cliente		FOREIGN KEY (idcliente)		REFERENCES cliente,
+CONSTRAINT	FK_gera_dia				FOREIGN KEY (dia)			REFERENCES agenda,
+CONSTRAINT	FK_gera_contrato	FOREIGN KEY (idcontrato)   REFERENCES contrato	
+)
+
+CREATE TABLE DEFENSOR(
+				    iddefensor		INT			    NOT NULL,	
+				    nome				  VARCHAR(45)	NOT NULL,		
+				    oab_def				INT			    NOT NULL,
+				    escritorio		VARCHAR(45)	NOT NULL,
+CONSTRAINT	PK_defensor		PRIMARY KEY (iddefensor),
+CONSTRAINT	AK_defensor		UNIQUE		(oab_def)
+)
+
+CREATE TABLE REU(
+			      idreu		  INT			    NOT NULL,
+			      nome		  VARCHAR(45)	NOT NULL,
+			      cidade		VARCHAR(45)	NOT NULL,
+			      rua			  VARCHAR(45)	NOT NULL,	
+			      email		  VARCHAR(45)	NOT NULL,		
+			      telefone	BIGINT			NOT NULL,
+CONSTRAINT	PK_reu	PRIMARY KEY (idreu)
+)
+
+CREATE TABLE TESTEMUNHA(
+				      idtestemunha	INT			    NOT NULL,
+				      nome			    VARCHAR(45)	NOT NULL,
+				      telefone		  BIGINT		  NOT NULL,
+				      email			    VARCHAR(45),		
+CONSTRAINT		PK_testemunha	PRIMARY KEY (idtestemunha),
+CONSTRAINT		AK_testemunha	UNIQUE (nome),
+)
+
+CREATE TABLE JUIZ(
+				      idjuiz		INT			    NOT NULL,
+				      nome		  VARCHAR(45)	NOT NULL,			
+				      matricula	BIGINT		  NOT NULL,
+CONSTRAINT		PK_juiz		PRIMARY KEY (idjuiz)
+)
+
+CREATE TABLE VARA(
+			      idvara			  INT			    NOT NULL,	
+			      idjuiz			  INT			    NOT NULL,	
+			      num_vara		  INT			    NOT NULL,
+			      cidade			  VARCHAR(45)	NOT NULL,	
+			      rua				    VARCHAR(45)	NOT NULL,			
+			      estado			  VARCHAR(45)	NOT NULL,
+CONSTRAINT	PK_vara			  PRIMARY KEY (idvara),
+CONSTRAINT	FK_vara_juiz	FOREIGN KEY (idjuiz) REFERENCES juiz,
+CONSTRAINT	AK_vara			  UNIQUE		(num_vara)
+)
+
+CREATE TABLE VINCULADO(
+			      iddefensor					      INT			NOT NULL,
+			      idreu						          INT			NOT NULL,
+			      idtestemunha				      INT			NOT NULL,
+CONSTRAINT	FK_vinculado_defensor	    FOREIGN KEY (iddefensor) REFERENCES defensor,
+CONSTRAINT	FK_vinculado_reu			    FOREIGN KEY (idreu) REFERENCES reu,
+CONSTRAINT	FK_vinculado_testemunha	  FOREIGN KEY (idtestemunha) REFERENCES testemunha
+)
+
+CREATE TABLE PROCESSO(
+		        idprocesso		        BIGINT	NOT NULL,
+		        numProcesso		DECIMAL (38, 0)	NOT NULL,
+		        idcontrato		        BIGINT	NOT NULL,
+		        iddefensor		          INT		NOT NULL,
+		        idreu			              INT		NOT NULL,
+		        idtestemunha	          INT		NOT NULL, 
+		        idvara			            INT		NOT NULL,
+		        idjuiz			            INT		NOT NULL,
+CONSTRAINT	PK_processo				      PRIMARY KEY (idprocesso),
+CONSTRAINT	FK_processo_contrato	  FOREIGN KEY (idcontrato	)   REFERENCES contrato,
+CONSTRAINT	FK_processo_vara		    FOREIGN KEY (idvara) REFERENCES vara,
+CONSTRAINT	FK_processo_defensor	  FOREIGN KEY (iddefensor) REFERENCES defensor,
+CONSTRAINT	FK_processo_reu			    FOREIGN KEY (idreu) REFERENCES reu,
+CONSTRAINT	FK_processo_testemunha	FOREIGN KEY (idtestemunha) REFERENCES testemunha,
+CONSTRAINT	FK_processo_juiz		    FOREIGN KEY (idjuiz) REFERENCES juiz,
+CONSTRAINT	AK_Processo				      UNIQUE		  (numProcesso),
+CONSTRAINT	CK_numProcesso			    CHECK		    (LEN(numProcesso) = 20)
+)
+```
+
+# 7. Script de povoamento do BD
+
+```sql
+/**Tabela Funcionário**/
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (1, 'Nancee Parkman', 1315281029, 'nparkman0@sogou.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (2, 'Maxy Bartosik', 8042535267, 'mbartosik1@nsw.gov.au');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (3, 'Hazel McCoughan', 1102228562, 'hmccoughan2@cnet.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (4, 'Phebe Willimot', 5589997363, 'pwillimot3@newsvine.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (5, 'Kacy MacBarron', 4767062769, 'kmacbarron4@theatlantic.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (6, 'Consalve McCallister', 6603222874, 'cmccallister5@ameblo.jp');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (7, 'Cazzie Warke', 9293145284, 'cwarke6@posterous.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (8, 'Andreana Chaudron', 3705492937, 'achaudron7@instagram.com');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (9, 'Tymothy Edgeworth', 9067062679, 'tedgeworth8@hhs.gov');
+insert into FUNCIONARIO (idfuncionario, nome, telefone, email) values (10, 'Nancee Prichet', 5457198655, 'nprichet9@livejournal.com');
+
+/**Tabela Secretária**/
+insert into SECRETARIA (idfuncionario, cfa) values (1, 847);
+insert into SECRETARIA (idfuncionario, cfa) values (2, 622);
+
+
+/**Tabela Contador**/
+insert into CONTADOR (idfuncionario, crc) values (3, 1208);
+insert into CONTADOR (idfuncionario, crc) values (4, 1229);
+
+/**Tabela Advogado**/
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (5, 20831, NULL);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (6, 17156, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (7, 23056, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (8, 22430, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (9, 23328, 5);
+insert into ADVOGADO (idfuncionario, oab, id_coordenado) values (10, 22717, 5);
+
+/**Tabela Cliente**/
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (1, 'Lelia McNelly', 'Eggendart Drive', 'Torre');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (2, 'Sherlock Bechley', 'Marquette Crossing', 'Centro');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (3, 'Janenna Maddaford', 'Moulton Court', 'Brisamar');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (4, 'Lucy Overstreet', 'Gerald Hill', 'Altiplano');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (5, 'Lita Treagus', 'Grasskamp Drive', 'Centro');
+insert into CLIENTE (idcliente, nomeCliente, rua, bairro) values (6, 'Creusa Marcelino', 'Jagua street', 'Jaguaribe');
+
+/**Tabela Física**/
+insert into FISICA (idcliente, cpf) values (1, 84138701001);
+insert into FISICA (idcliente, cpf) values (2, 98289648448);
+insert into FISICA (idcliente, cpf) values (3, 94002059022);
+
+/**Tabela Jurídica**/
+insert into JURIDICA (idcliente, cnpj) values (4, 36808061000127);
+insert into JURIDICA (idcliente, cnpj) values (5, 70897293000137);
+insert into JURIDICA (idcliente, cnpj) values (6, 50897293100137);
+
+/**Tabela Telefone**/
+insert into TELEFONE (idcliente, fone, tipo) values (1, '1212265854', 'Celular');
+insert into TELEFONE (idcliente, fone, tipo) values (2, '6143429669', 'Fixo');
+insert into TELEFONE (idcliente, fone, tipo) values (3, '6474226373', 'Fixo');
+insert into TELEFONE (idcliente, fone, tipo) values (4, '5107573673', 'Celular');
+insert into TELEFONE (idcliente, fone, tipo) values (5, '6074774231', 'Fixo');
+
+/**Tabela Consulta**/
+insert into CONSULTA (idconsulta, idfuncionario, pauta) values (502, 5, 'Inventário');
+insert into CONSULTA (idconsulta, idfuncionario, pauta) values (687, 10, 'Inventário');
+insert into CONSULTA (idconsulta, idfuncionario, pauta) values (105, 7, 'Defesa Criminal');
+insert into CONSULTA (idconsulta, idfuncionario, pauta) values (278, 6, 'Penhora');
+insert into CONSULTA (idconsulta, idfuncionario, pauta) values (383, 8, 'Defesa Criminal');
+
+/**Tabela Agenda**/
+insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('7:33', 1, '2019-05-15', 502);
+insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('10:04', 2, '2020-05-31', 687);
+insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('8:54', 3, '2019-10-30', 105);
+insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('9:59', 4, '2019-07-11', 278);
+insert into AGENDA (hora_inicio, idcliente, dia, idconsulta) values ('8:05', 5, '2019-10-04', 383);
+
+/**Tabela Contrato**/
+
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (59520, 1000235, 150000);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (2578, 1000257, 78000);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (101, 1000784, 900);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (1125, 1000001, 3769050);
+insert into CONTRATO (idcontrato, numero_contrato, valor) values (9668, 1000425, 12300);
+
+
+/**Tabela Gera**/
+insert into GERA (idconsulta, idcliente, dia, idcontrato) values (278, 4, '2019-07-11', 59520);
+insert into GERA (idconsulta, idcliente, dia, idcontrato) values (105, 3, '2019-10-30', 2578);
+insert into GERA (idconsulta, idcliente, dia, idcontrato) values (687, 2, '2020-05-31', 101);
+insert into GERA (idconsulta, idcliente, dia, idcontrato) values (502, 1, '2019-05-15', 1125);
+insert into GERA (idconsulta, idcliente, dia, idcontrato) values (383, 5, '2019-10-04', 9668);
+
+/**Tabela Defensor**/
+insert into DEFENSOR (iddefensor, nome, oab_def, escritorio) values (74, 'Melissa Golton', 7944, 'Demizz');
+insert into DEFENSOR (iddefensor, nome, oab_def, escritorio) values (75, 'Monique Pacquet', 9558, 'Flashset');
+insert into DEFENSOR (iddefensor, nome, oab_def, escritorio) values (76, 'Darin Sline', 9817, 'Brainsphere');
+insert into DEFENSOR (iddefensor, nome, oab_def, escritorio) values (77, 'Bearnard Ungerechts', 8121, 'Thoughtworks');
+insert into DEFENSOR (iddefensor, nome, oab_def, escritorio) values (78, 'Sam Bugg', 4196, 'InnoZ');
+
+/**Tabela Reu**/
+insert into REU (idreu, nome, cidade, rua, email, telefone) values (151, 'Breena Gallemore', 'Bontoc', 'Porter', 'errofdp@odeioisso.com', 2294411741);
+insert into REU (idreu, nome, cidade, rua, email, telefone) values (152, 'Holden Oxherd', 'Yurkivka', 'Sullivan', 'hoxherd1@trellian.com', 8382537519);
+insert into REU (idreu, nome, cidade, rua, email, telefone) values (200, 'Sioux Peeters', 'Kisangani', 'Pennsylvania', 'speeters2@yandex.ru', 4546947732);
+insert into REU (idreu, nome, cidade, rua, email, telefone) values (173, 'Evita Demeter', 'Fajões', 'Holmberg', 'edemeter3@i2i.jp', 1129482098);
+insert into REU (idreu, nome, cidade, rua, email, telefone) values (168, 'Kata Bates', 'Krajan Kinanti', 'Spaight', 'kbates4@house.gov', 8463280940);
+
+/**Tabela Testemunha**/
+insert into TESTEMUNHA (idtestemunha, nome, telefone, email) values (294, 'Neddy Baty', '5474789283', 'nbaty0@amazon.de');
+insert into TESTEMUNHA (idtestemunha, nome, telefone, email) values (234, 'Jo Trusler', '1764623598', 'jtrusler1@reddit.com');
+insert into TESTEMUNHA (idtestemunha, nome, telefone, email) values (263, 'Chilton Boddington', '2372880091', 'cboddington2@tumblr.com');
+insert into TESTEMUNHA (idtestemunha, nome, telefone, email) values (216, 'Rey Neilus', '2873895518', 'rneilus3@yolasite.com');
+insert into TESTEMUNHA (idtestemunha, nome, telefone, email) values (213, 'Erda Galland', '4703840899', 'egalland4@japanpost.jp');
+
+/**Tabela Juiz**/
+insert into JUIZ (idjuiz, nome, matricula) values (400, 'Wylie Yeatman', 19516);
+insert into JUIZ (idjuiz, nome, matricula) values (240, 'Calli Tuiller', 16167);
+insert into JUIZ (idjuiz, nome, matricula) values (450, 'Nettle Andrzejczak', 16488);
+insert into JUIZ (idjuiz, nome, matricula) values (460, 'Jecho McGeraghty', 17044);
+insert into JUIZ (idjuiz, nome, matricula) values (230, 'Crosby Roddell', 17186);
+
+/**Tabela Vara**/
+insert into VARA (idvara, idjuiz, num_vara, cidade, rua, estado) values (500, 400, 1, 'Orekhovo-Zuyevo', 'Northfield', 'PB');
+insert into VARA (idvara, idjuiz, num_vara, cidade, rua, estado) values (501, 240, 2, 'Hengjian', 'Warrior', 'SE');
+insert into VARA (idvara, idjuiz, num_vara, cidade, rua, estado) values (502, 450, 3, 'Saryaghash', 'Mitchell', 'SP');
+insert into VARA (idvara, idjuiz, num_vara, cidade, rua, estado) values (503, 460, 4, 'Cahabón', 'North', 'RJ');
+insert into VARA (idvara, idjuiz, num_vara, cidade, rua, estado) values (504, 230, 5, 'Sukamaju', 'Heffernan', 'AM');
+
+/**Tabela Vinculado**/
+insert into VINCULADO (iddefensor, idreu, idtestemunha) values (74, 151, 263);
+insert into VINCULADO (iddefensor, idreu, idtestemunha) values (76, 152, 216);
+insert into VINCULADO (iddefensor, idreu, idtestemunha) values (75, 200, 234);
+insert into VINCULADO (iddefensor, idreu, idtestemunha) values (74, 173, 294);
+insert into VINCULADO (iddefensor, idreu, idtestemunha) values (78, 168, 213);
+
+/**Tabela Processo**/
+insert into PROCESSO (idprocesso, numProcesso, idcontrato, iddefensor, idreu, idtestemunha, idvara, idjuiz) values (989, 18607278320198152001, 59520, 74, 151, 294, 500, 400);
+insert into PROCESSO (idprocesso, numProcesso, idcontrato, iddefensor, idreu, idtestemunha, idvara, idjuiz) values (898, 18507278320198152001, 2578, 75, 152, 234, 501, 240);
+insert into PROCESSO (idprocesso, numProcesso, idcontrato, iddefensor, idreu, idtestemunha, idvara, idjuiz) values (797, 18707278320198152001, 101, 76, 200, 263, 502, 450);
+insert into PROCESSO (idprocesso, numProcesso, idcontrato, iddefensor, idreu, idtestemunha, idvara, idjuiz) values (696, 18807278320198152001, 1125, 77, 173, 216, 503, 460);
+insert into PROCESSO (idprocesso, numProcesso, idcontrato, iddefensor, idreu, idtestemunha, idvara, idjuiz) values (595, 18907278320198152001, 9668, 78, 168, 213, 504, 230);
+```
