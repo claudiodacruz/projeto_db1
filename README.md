@@ -12,24 +12,25 @@
 3. Modelo lógico
 4. Modelo lógico expandido
 5. Dicionário de dados
-- 5.1 Tabela Funcionário
-- 5.2 Tabela Secretária
-- 5.3 Tabela Contador
-- 5.4 Tabela Advogado
-- 5.5 Tabela Consulta
-- 5.6 Tabela Agenda
-- 5.7 Tabela Cliente
-- 5.8 Tabela Física
-- 5.9 Tabela Jurídica
+- 5.1  Tabela Funcionário
+- 5.2  Tabela Secretária
+- 5.3  Tabela Contador
+- 5.4  Tabela Advogado
+- 5.5  Tabela Consulta
+- 5.6  Tabela Agenda
+- 5.7  Tabela Cliente
+- 5.8  Tabela Física
+- 5.9  Tabela Jurídica
 - 5.10 Tabela Telefone
 - 5.11 Tabela Gera
 - 5.12 Tabela Contrato
 - 5.13 Tabela Processo
 - 5.14 Tabela Vinculado
-- 5.15T abela Defensor
+- 5.15 Tabela Defensor
 - 5.16 Tabela Réu
-- 5.17 Tabela Juiz
-- 5.18 Tabela Vara
+- 5.17 Tabela Testemunha
+- 5.18 Tabela Juiz
+- 5.19 Tabela Vara
 
 ------------
 # 1. Minimundo de um escritório de advocacia
@@ -66,7 +67,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 ------------
 
 # 3. Modelo lógico
-![](https://github.com/gustavogalisa/projeto_db1/blob/master/pre_projeto_bd1/modelo_completo.png)
+![](https://github.com/gustavogalisa/projeto_db1/blob/master/projeto_bd_1/Modelo_logico_organizado.png)
 
 ------------
 
@@ -85,7 +86,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idfuncionario |  INT | NÃO  | X  |   | |
 | nome  | VARCHAR(45)  | NÃO  |   |   | X|
-| telefone  |INT  | NÃO  |   |   | |
+| telefone  |BIGINT  | NÃO  |   |   | |
 | email  | VARCHAR(45)  | NÃO  |   |   | | |
 
 - Constraints:
@@ -133,7 +134,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idfuncionario |  INT | NÃO  |   | x  | |
 | oab  | INT  | NÃO  |   |   |x |
-| id_coordena  | INT  | NÃO  |   |  x | | |
+| id_coordena  | INT  | SIM  |   |  x | | |
 
 
 - Constraints:
@@ -199,7 +200,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idcliente | INT  | NÃO  |   | X  |  |
-| cpf | INT  | NÃO  |   |   | X |
+| cpf | BIGINT  | NÃO  |   |   | X |
 
 
 - Constraints: 
@@ -216,7 +217,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idcliente | INT  | NÃO  |   | X  |  |
-| cnpj | INT  | NÃO  |   |   | X |
+| cnpj | BIGINT  | NÃO  |   |   | X |
 
 
 - Constraints:
@@ -232,7 +233,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-| fone | INT  | NÃO  |  X |   |  |
+| fone | BIGINT  | NÃO  |  X |   |  |
 | idcliente | INT  | NÃO  |   |  X |  |
 | tipo | VARCHAR(45)  | NÃO  |   |   |  | |
 
@@ -248,10 +249,10 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idconsulta |  INT | NÃO  |   | X  | |
+|  idconsulta |  BIGINT | NÃO  |   | X  | |
 | idcliente | INT  | NÃO  |   |  X |  |
 | dia | DATE  | NÃO  |  X |   |  |
-| idcontrato | int  | NÃO  |   |  X |  | |
+| idcontrato | BIGINT  | NÃO  |   |  X |  | |
 
 
 - Constraints:
@@ -269,7 +270,6 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idcontrato | INT  | NÃO  |  X |   |  |
 | numero_contrato | INT  | NÃO  |   |   | X |
-| valor | INT  | NÃO  |   |   | | |
 
 
 - Constraints:
@@ -283,9 +283,9 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  idprocesso |  INT | NÃO  |  X |   | |
-| numProcesso | INT  | NÃO  |   |   | X |
-|  idcontrato |  INT | NÃO  |   | X  | |
+|  idprocesso |  BIGINT | NÃO  |  X |   | |
+| numProcesso | DECIMAL (38, 0)  | NÃO  |   |   | X |
+|  idcontrato |  BIGINT | NÃO  |   | X  | |
 | idedefensor | INT  | NÃO  |   |  X |  |
 | idreu | INT  | NÃO  |   |  X |  | 
 | idtestemunha | INT  | NÃO  |   |  X |  |
@@ -352,7 +352,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | cidade | VARCHAR(45)  | NÃO  |   |   |  |
 | rua | VARCHAR(45)  | NÃO  |   |   |  |
 | email | INT  | NÃO  |   |   |  |
-| telefone | INT  | NÃO  |   |   |  |  |
+| telefone | BIGINT  | NÃO  |   |   |  |  |
 
 - Constraints:
 
@@ -360,13 +360,13 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idreu |  Chave primária | Identificador do reu  | PK_idreu | PRIMARY KEY (idreu)  |
 
-**5.16 Tabela Testemunha**
+**5.17 Tabela Testemunha**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idtestemunha | INT  | NÃO  |  X |   |  |
 | nome | VARCHAR(45)  | NÃO  |   |   | X |
-| telefone | INT  | NÃO  |   |   |  |  
+| telefone | BIGINT  | NÃO  |   |   |  |  
 | email | INT  | SIM  |   |   |  | |
 
 - Constraints:
@@ -376,13 +376,13 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 |  idtestemunha |  Chave primária | Identificador da testemunha  | PK_testemunha | PRIMARY KEY (idtestemunha)  |
 |  nome |  Chave candidata | Nome da testemunha  | AK_testemunha | UNIQUE (nome)  |
 
-**5.17 Tabela Juiz**
+**5.18 Tabela Juiz**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idjuiz | INT  | NÃO  |  X |   |  |
 | nome | VARCHAR(45)  | NÃO  |   |   |  |
-| matricula | INT  | NÃO  |   |   |  | |
+| matricula | BIGINT  | NÃO  |   |   |  | |
 
 - Constraints:
 
@@ -390,7 +390,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  idjuiz |  Chave primária | Identificador do juiz  | PK_juiz | PRIMARY KEY (idjuiz)  |
 
-**5.18 Tabela Vara**
+**5.19 Tabela Vara**
 
 | ATRIBUTO |TIPO  | NULO  | PK  | FK  | AK |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
