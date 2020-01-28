@@ -270,6 +270,7 @@ Toda vara está diretamente ligada e é coordenada por apenas um juiz de direito
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 | idcontrato | INT  | NÃO  |  X |   |  |
 | numero_contrato | INT  | NÃO  |   |   | X |
+| valor | BIGINT  | NÃO  |   |   |  |
 
 
 - Constraints:
